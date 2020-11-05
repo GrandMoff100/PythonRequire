@@ -6,3 +6,5 @@ def myfunc(x, target=30, index=0):
     else:
         return x
     return myfunc(x, target, index + 1)
+
+print('Executed')
