@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name="PythonRequire",
-    packages=['require.py'],
+    packages=['require'],
     version='0.0.0',
     description="A require() function in python.",
     long_description=long_description,
