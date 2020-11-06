@@ -16,12 +16,18 @@ def python_require(module, runtime):
     if IDENTIFIER in runtime.f_globals:
         read = runtime.f_globals[IDENTIFIER]
     else:
-        # Set the content to the default if it doesn;t exist yet.
-        with open(runtime.f_globals['__file__'], 'r') as f:
-            read = f.read()
+        # Set the content to the default if it doesn't exist yet.
+        try:
+            with open(runtime.f_globals['__file__'], 'r') as f:
+                read = f.read()
+        except KeyError:
+            raise SystemError("Cannot find file name in global scope, if you are using the python shell, that isn't supported yet.")
 
+    # Detects the leading indentation.
+    a = read.splitlines()[runtime.f_lineno]
+    leading_spaces = len(a) - len(a.lstrip())
     # Add the module code to the following code.
-    post = data + '\n' + '\n'.join(
+    post = '\n{}'.format(' ' * leading_spaces).join(data.splitlines()) + '\n' + '\n'.join(
         read.splitlines()[runtime.f_lineno:]
     )
     
