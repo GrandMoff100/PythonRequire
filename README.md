@@ -1,5 +1,9 @@
 <h1 align="center">Python Require</h1>
 
+**NOTE: This project is hacky and is not best practice!**
+
+**This module was for educational purposes only**
+
 ```py
 from require import python_require, runtime
 
